@@ -3,7 +3,9 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-class ArticleController
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class ArticleController extends AbstractController
 {
   /**
        * @Route("/")
@@ -14,12 +16,12 @@ class ArticleController
   }
 
   /**
-    * @Route("/news/why-asteroids-taste-like-bacon")
+    * @Route("/news/why-asteroids-taste-like-bacon/{slug}")
     */
-   public function show()
+   public function show($slug)
 
    {
-       return new Response('Future page to show one space article!');
+       return $this->render('article/show.html.twig',['title' => ucwords(str_replace('-', ' ', $slug)),]);
    }
 
    /**
